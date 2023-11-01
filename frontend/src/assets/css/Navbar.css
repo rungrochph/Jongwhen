@@ -1,0 +1,88 @@
+
+@import url('https://fonts.googleapis.com/css?family=Cute+Font');
+/* Navbar Container */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #4696e5;
+  padding: 0px;
+  color: #fff;
+  
+  
+
+}
+
+/*Div a*/
+.menu-items div a{
+  color: #00aaff;
+  flex-direction: column;
+  text-decoration: none;
+}
+/* Logo */
+.logo img {
+  margin-left: 50px;
+  width: 200px;
+  height: auto;
+  
+}
+
+/* Menu Items */
+.menu-items ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  color: 		#9400d3;
+  font-family: 'Cute Font', cursive; 
+  font-size: 20px;
+}
+
+.menu-items li {
+  margin-right: 60px;
+   /* Try 'Open Sans', and fallback to Arial and then a generic sans-serif font */
+    /* Other CSS properties for menu items */
+}
+
+.menu-items a:hover {
+  color: #00aaff;
+  /* text-decoration: underline; */
+
+}
+
+/* Mobile Menu Icon */
+.menu-icon {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.menu-icon .bar {
+  width: 30px;
+  height: 3px;
+  background-color: #fff;
+  margin: 4px 0;
+  transition: background-color 0.3s;
+}
+
+/* Responsive Menu Open */
+.menu-items.open ul {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 70px;
+  right: 0;
+  background-color: #333;
+  border: 1px solid #00aaff;
+  border-top: none;
+  text-decoration: none;
+}
+
+.menu-items.open li {
+  margin: 10px;
+}
+
+/* Responsive Menu Icon Animation */
+.menu-icon.open .bar {
+  background-color: #00aaff;
+}

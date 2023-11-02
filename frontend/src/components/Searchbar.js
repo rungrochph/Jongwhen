@@ -164,9 +164,11 @@ async function getuserList(JasonData) {
      console.log("Jason...",JasonData)
      getTotalPrice(JasonData)
      getDataUser(JasonData)
-     
+     setStatus(true)
    }
+   const [status,setStatus] = useState(false)
    props.sentData(dataUser)
+   props.sentStatus(status)
   return (
     <div>
       <nav className="navbar-search">

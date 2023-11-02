@@ -157,8 +157,9 @@ async function getEventType(JasonData) {
     }
   }
   useEffect(() => {
-    getEvent();
+    
     getEventType();
+    // setEventlist(getEvent())
     
   }, []);
 
@@ -187,6 +188,7 @@ async function getEventType(JasonData) {
         }));
         console.log("SSSSSS",formattedEvents)
         setEventlist(formattedEvents);
+        // return formattedEvents
       } else {
         alert("Get Event failed");
       }
@@ -393,16 +395,38 @@ async function getEventType(JasonData) {
     }
   }
 
-  // const [dataListFromSearch,setDataListFromSearch] = useState([])
-  const dataRecripts = (item) =>{
-    console.log("hhhhh",item)
+  const [dataListFromSearch,setDataListFromSearch] = useState([])
+  const dataRecripts = (item) =>{ 
+    setDataListFromSearch(item)
+    console.log("hhhhh",dataListFromSearch)
   }
+
+  const setData = () =>{
+    console.log("Data Recripts",dataListFromSearch)
+  }
+  
+  const [status, setStatus] = useState(false);
+
+useEffect(() => {
+  if (status) {
+    setEventlist(dataListFromSearch);
+    console.log("ddddd");
+  } else {
+    getEvent();
+  }
+}, [status, dataListFromSearch]);
+
+  
+const getStatus = (st) =>{
+  setStatus(st)
+  console.log("rrrrrddd", status)
+}
   return (
 
     <div>
       <Navbar/>
       <Row>
-        <Col span={24} style={{justifyContent:"center"}}> <Searchbar sentData={dataRecripts}/></Col>
+        <Col span={24} style={{justifyContent:"center"}} onClick={setData}> <Searchbar sentData={dataRecripts} sentStatus={getStatus} /></Col>
       </Row>
       <Row>
         <Col span={6}>
@@ -430,9 +454,9 @@ async function getEventType(JasonData) {
           <FullCalendar
             plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
             headerToolbar={{
-              left: "prev,next today",
+              left: "today",
               center: "title",
-              right: "dayGridMonth,timeGridWeek,timeGridDay",
+              right: "prev,next"
             }}
             events={eventlist}
             selectable={true}

@@ -30,14 +30,7 @@
     "react-scripts": "5.0.1",
     "sort-by": "^1.2.0",
     "web-vitals": "^2.1.4"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
+  },  "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
@@ -56,6 +49,14 @@
     ]
   },
   "devDependencies": {
-    "create-vite": "^4.4.1"
+    "create-vite": "^4.4.1",
+    "tailwindcss": "^3.3.5"
+  },
+  "scripts":{
+    "start": "react-scripts start",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "build":"npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
   }
+
 }

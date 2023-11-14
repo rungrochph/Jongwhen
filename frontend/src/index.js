@@ -16,6 +16,7 @@ import Hompage from './components/Homepage';
 import Calendar from './components/MyCalender';
 import Navbar from './components/Navbar';
 import Searchbar from './components/Searchbar';
+import Testtailwind from './components/Testtailwind';
 
 const router = createBrowserRouter([
   {path: "/",element: <Hompage/>,}
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
   ,{path: "/Calender",element: <Calendar/>,}
   ,{path: "/Navbar",element: <Navbar/>,}
   ,{path: "/Searchbar",element: <Searchbar/>,}
+  ,{path: "/Test",element: <Testtailwind/>,}
 
 
   // ,{path: "/test",element: <Calendar/>,}

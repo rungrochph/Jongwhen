@@ -1,0 +1,23 @@
+/* styles.css */
+@import url('tailwindcss/base');
+@import url('tailwindcss/components');
+@import url('tailwindcss/utilities');
+
+/* Your custom styles go here */
+@tailwind components {
+  /* Define your component styles here */
+}
+
+@layer components {
+  .menu-item {
+    @apply text-blue-500;
+    @apply mr-8;
+    @apply mt-4;
+    /* font-family: 'Roboto', sans-serif; */
+    ;
+  }
+  .calender{
+    @apply max-w-xl;
+    @apply h-7;
+  }
+}

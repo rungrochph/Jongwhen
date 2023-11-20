@@ -17,6 +17,7 @@ import Calendar from './components/MyCalender';
 import Navbar from './components/Navbar';
 import Searchbar from './components/Searchbar';
 import Testtailwind from './components/Testtailwind';
+import ManageUsers from './components/ManageUsers';
 
 const router = createBrowserRouter([
   {path: "/",element: <Hompage/>,}
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
   ,{path: "/Navbar",element: <Navbar/>,}
   ,{path: "/Searchbar",element: <Searchbar/>,}
   ,{path: "/Test",element: <Testtailwind/>,}
+  ,{path: "/ManageUser",element: <ManageUsers/>,}
 
 
   // ,{path: "/test",element: <Calendar/>,}

@@ -342,6 +342,30 @@ app.post("/calender/getUserList", jsonParser, function (req, res, next){
     ); 
 });
 
+
+// ดึงข้อมูลของผู้ใช้ทั้งหมด ManageUsers
+app.get("/manage/users", jsonParser, function (req, res, next){
+  connection.query(
+    `
+    SELECT ju.id 
+    , concat(ju.fname, " ",ju.lname) as fullname 
+    , ju.email as email 
+    , ju.position as position
+    , jut.type_name as type_name
+    FROM jw_users as ju
+    LEFT JOIN jw_users_type as jut ON ju.users_type_id = jut.id`,
+
+      function (err, results, fields) {
+        if (err) {
+          res.json({ status: "error", message: err });
+          
+          return;
+        } 
+        res.json({ status: "ok", results: results });
+      }
+    ); 
+});
+
 app.listen(3030, jsonParser, function () {
   console.log(" web server listening on port 3030");
 });

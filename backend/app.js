@@ -366,6 +366,78 @@ app.get("/manage/users", jsonParser, function (req, res, next){
     ); 
 });
 
+//ลบข้อมูลผู้ใช้โดยอ้างอิงจาก ID
+app.post("/user/deleteUser/id", jsonParser, function (req, res, next){
+  const id = req.body.id
+  connection.query(
+    `DELETE FROM jw_users WHERE id=?`,
+    [id],
+      function (err) {
+        if (err) {
+          res.json({ status: "error", message: err });
+          
+          return;
+        } 
+        res.json({ status: "ok" });
+      }
+    ); 
+});
+
+//ดึงข้อมูลผู้ใช้โดยอ้างอิงจาก ID
+app.post("/user/getUser/id", jsonParser, function (req, res, next){
+  const id = req.body.id
+  connection.query(
+    `SELECT * FROM jw_users WHERE id=?`,
+    [id],
+      function (err,results) {
+        if (err) {
+          res.json({ status: "error", message: err });
+          
+          return;
+        } 
+        res.json({ status: "ok" ,results: results });
+      }
+    ); 
+});
+
+//ดึงประเภทของผู้ใช้งาน
+app.post("/user/getUserType", jsonParser, function (req, res, next){
+  const id = req.body.id
+  connection.query(
+    `SELECT * FROM jw_users_type `,
+    [id],
+      function (err,results) {
+        if (err) {
+          res.json({ status: "error", message: err });
+          
+          return;
+        } 
+        res.json({ status: "ok" ,results: results });
+      }
+    ); 
+});
+
+//Update ข้อมูล ใน User table
+app.put("/user/update/id", jsonParser, function (req, res, next){
+  const id = req.body.id;
+  const fname = req.body.fname;
+  const lname = req.body.lname;
+  const email = req.body.email;
+  const position = req.body.position;
+  const users_type_id  = req.body.users_type_id;
+  connection.query(
+    'UPDATE jw_users SET fname =?, lname =?, email =?, position =?, users_type_id =? WHERE id =?',
+      [fname, lname, email, position, users_type_id, id],
+      function (err, results, fields) {
+        if (err) {
+          res.json({ status: "error", message: err });
+          return;
+        } 
+          res.json({ status: "ok" });
+      }
+    ); 
+});
+
 app.listen(3030, jsonParser, function () {
   console.log(" web server listening on port 3030");
 });

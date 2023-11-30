@@ -10,7 +10,7 @@ import {
 
 //impoort Component
 import Signin from "./components/Login";
-import Album from './components/Album';
+// import Album from './components/Album';
 import Register from './components/Register';
 import Hompage from './components/Homepage';
 import Calendar from './components/MyCalender';
@@ -23,7 +23,7 @@ const router = createBrowserRouter([
   {path: "/",element: <Hompage/>,}
   ,{path: "/home",element: <Hompage/>,}
   ,{path: "/login",element: <Signin/>,}
-  ,{path: "/album",element: <Album/>,}
+  // ,{path: "/album",element: <Album/>,}
   ,{path: "/register",element: <Register/>,}
   ,{path: "/Calender",element: <Calendar/>,}
   ,{path: "/Navbar",element: <Navbar/>,}

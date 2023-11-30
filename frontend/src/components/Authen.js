@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import Button from '@mui/material/Button';
 
-const Album = () => {
+const Authen = () => {
 	const handleLogout = (event) => {
 		localStorage.removeItem('token');
 		window.location = "./login";
@@ -9,6 +9,9 @@ const Album = () => {
 
   useEffect(() => {
 	const token = localStorage.getItem('token')
+  const fname = localStorage.getItem('fname')
+  const lname = localStorage.getItem('lname')
+    
 	postJSON()
     async function postJSON() {
       try {
@@ -25,9 +28,12 @@ const Album = () => {
 		console.log("result Authen",result.status)
         if (result.status === "ok") {
         //   alert("Authen Success");
+        console.log("Name",fname," ",lname)
         } else {
-          alert("Authen  failed");
+          alert("Please Login");
 		  localStorage.removeItem('token');
+		  localStorage.removeItem('fname');
+		  localStorage.removeItem('lname');
 		  window.location = "./login";
         }
       } catch (error) {
@@ -37,4 +43,4 @@ const Album = () => {
   }, []);
   return <Button variant="contained" onClick={handleLogout}>Log out</Button>;
 };
-export default Album;
+export default Authen;

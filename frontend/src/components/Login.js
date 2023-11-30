@@ -13,11 +13,16 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Navbar from './Navbar';
-
+// import { useState } from 'react';
 
 const defaultTheme = createTheme();
 
+
 export default function SignInSide() {
+
+// const [userLoginFname, setUserLoginFname] = useState() 
+// const [userLoginLname, setUserLoginLname] = useState() 
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -40,9 +45,16 @@ async function postJSON(JasonData) {
       const result = await response.json();
       if(result.status === 'ok'){
         localStorage.setItem("token", result.token)
+        localStorage.setItem("fname", result.results[0].fname)
+        localStorage.setItem("lname", result.results[0].lname)
+
         console.log("token login",result.token)
         alert('Login Sucess')
-        window.location = './Album'
+        window.location = './'
+        console.log("results",result)
+        // setUserLoginFname(result.results[0].fname)
+        // setUserLoginLname(result.results[0].lname)
+        console.log("Name UserLogin :",result.results[0].fname," ",result.results[0].lname )
         
       }else{
         alert('Login failed')

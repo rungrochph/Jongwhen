@@ -10,6 +10,7 @@ import moment from "moment";
 import Searchbar from "./Searchbar";
 import Navbar from "./Navbar";
 import "../input.css";
+import Authen from "./Authen";
 
 const Calendar = () => {
   const [userList, setUserList] = useState([]);
@@ -423,8 +424,12 @@ const Calendar = () => {
     setStatus(st);
     console.log("rrrrrddd", status);
   };
+
+
+  
   return (
     <div className="flex flex-col ">
+      <Authen/>
       <Navbar/>
       <div>
         <Col span={24} style={{ justifyContent: "center" }} onClick={setData}>
@@ -608,6 +613,7 @@ const Calendar = () => {
           style={{ marginTop: "10px", marginBottom: "30px" }}
         />
       </Modal>
+      {/* <button variant="contained" onClick={handleLogout}>Log out</button>; */}
     </div>
   );
 };

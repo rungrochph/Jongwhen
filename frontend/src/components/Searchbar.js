@@ -3,8 +3,8 @@ import React, { useState, useRef, useEffect } from "react";
 import "../input.css";
 
 const Searchbar = (props) => {
-  const [endDate, setEndDate] = useState(new Date().toLocaleDateString());
-  const [startDate, setStartDate] = useState(new Date().toLocaleDateString());
+  const [endDate, setEndDate] = useState();
+  const [startDate, setStartDate] = useState();
 
   // const [date, setDate] = useState('');
   const dateInputRefstart = useRef(null);
@@ -121,7 +121,7 @@ const Searchbar = (props) => {
   async function getDataUser(JasonData) {
     try {
       const response = await fetch(
-        "http://localhost:3030/calender/getUserList",
+        "http://localhost:3030/calender/getEventsList",
         {
           method: "post",
           headers: {
@@ -155,55 +155,77 @@ const Searchbar = (props) => {
   }
 
   const getDatafromSearch = () => {
-    const JasonData = {
-      userNameId: userNameId,
-      event_type_id: eventTypeId,
-      startDate: startDate,
-      endDate: endDate,
-    };
-    console.log("Jason...", JasonData);
-    getTotalPrice(JasonData);
-    getDataUser(JasonData);
-    setStatus(true);
+    // Check if all required fields are filled
+    if (startDate && endDate && eventTypeId && userNameId) {
+      const JasonData = {
+        userNameId: userNameId,
+        event_type_id: eventTypeId,
+        startDate: startDate,
+        endDate: endDate,
+      };
+
+      getTotalPrice(JasonData);
+      getDataUser(JasonData);
+      setStatus(true);
+    } else {
+      // Handle case when required fields are not filled
+      alert("กรุณาใส่ input ให้ครับทุกช่อง ");
+    }
   };
+
   const [status, setStatus] = useState(false);
   props.sentData(dataUser);
   props.sentStatus(status);
+
+ function exportData() {
+  window.location.href = 'http://localhost:8080/jasperserver/rest_v2/reports/reports/jwReports/test.pdf?j_username=jasperadmin&j_password=jasperadmin&ID=51';
+ ;
+  
+  }
+  
   return (
     <div className="flex flex-row ml-10 p-8 ">
       <div className="menu-item">
-        <label>Start</label>
+        <label className="block mb-2 text-sm font-medium text-gray-900 white:text-dark">
+          Start
+        </label>
         <input
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          name="startDate"
+          className="bg-white-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 white:text-dark dark:focus:ring-blue-500 dark:focus:border-blue-500"
           id="startDate"
           type="date"
           onChange={handleChangeStart}
           ref={dateInputRefstart}
+          required
         />
         {/* <p>Selected Date: {startDate}</p> */}
       </div>
       <div className="menu-item">
-        <label>End</label>
+        <label className="block mb-2 text-sm font-medium text-gray-900 white:text-dark">
+          End
+        </label>
         <input
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="bg-white-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 white:text-dark dark:focus:ring-blue-500 dark:focus:border-blue-500"
           id="endDate"
           name="endDate"
           type="date"
           onChange={handleChangeEnd}
           ref={dateInputRefend}
+          required
         />
 
         {/* <p>Selected Date: {endDate}</p> */}
       </div>
       <div className="menu-item">
-        <label className="block mb-2 text-sm font-medium text-gray-900 white:text-dark">Type Of Event</label>
+        <label className="block mb-2 text-sm font-medium text-gray-900 white:text-dark">
+          Type Of Event
+        </label>
         <select
           className="bg-white-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 white:text-dark dark:focus:ring-blue-500 dark:focus:border-blue-500"
           id="event_type_id"
           name="event_type_id"
           onChange={(e) => setEventTypeId(e.target.value)}
           value={eventTypeId}
+          required
         >
           <option value={""} key={999}>
             --กรุณาเลือกประเภท--
@@ -220,13 +242,15 @@ const Searchbar = (props) => {
         </select>
       </div>
       <div className="menu-item">
-        <label>Name</label>
+        <label className="block mb-2 text-sm font-medium text-gray-900 white:text-dark">
+          Name
+        </label>
         <select
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          name="userNameId"
+          className="bg-white-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 white:text-dark dark:focus:ring-blue-500 dark:focus:border-blue-500"
           id="userNameId"
           value={userNameId}
           onChange={(e) => setUserNameId(e.target.value)}
+          required
         >
           <option value={""} key={999}>
             --กรุณาเลือกผู้รับผิดชอบ--
@@ -239,15 +263,21 @@ const Searchbar = (props) => {
         </select>
       </div>
       <div>
-        <button className="btn-primary" onClick={getDatafromSearch}>
+        <button class="btn btn-yellow btn-xs" onClick={getDatafromSearch}>
           Search
         </button>
       </div>
       <div>
-        <label style={{ marginTop: "47px" }}>
+        <label
+          style={{ marginTop: "47px" }}
+          className="block mb-2 text-sm font-medium text-gray-900 white:text-dark"
+        >
           {" "}
           จำนวนทั้งหมด {totalPrice} บาท
         </label>
+        <button class="btn btn-yellow btn-xs" onClick={exportData}>
+          export to pdf
+        </button>
       </div>
     </div>
   );

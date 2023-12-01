@@ -137,8 +137,10 @@ const Calendar = () => {
           title: title,
           // color: color,
         };
+       
       },
     });
+    
   };
 
   async function addDragEvent(JasonData) {
@@ -157,6 +159,7 @@ const Calendar = () => {
       const result = await response.json();
       if (result.status === "ok") {
         alert("Add Event Sucess");
+        window.location.reload();
       } else {
         alert("Add Event failed");
       }
@@ -492,8 +495,16 @@ const Calendar = () => {
       <Modal
         title="เพิ่มรายละเอียด"
         open={isModalOpen}
-        onOk={handleOk}
+        onOk={handleOk }
         onCancel={handleCancel}
+        footer={[
+          <button key="cancel" onClick={handleCancel} className="bg-yellow-500 mr-2 p-1">
+            Cancel
+          </button>,
+          <button key="update" onClick={handleOk} className="bg-blue-500 mr-2 px-4" >
+            ok
+          </button>,
+        ]}
       >
         <input
           placeholder="Event Name"
@@ -556,13 +567,13 @@ const Calendar = () => {
         onOk={handleOk}
         onCancel={handleCancel1}
         footer={[
-          <button key="cancel" onClick={handleCancel1}>
+          <button key="cancel" onClick={handleCancel1} className="bg-yellow-500 mr-2 p-1">
             Cancel
           </button>,
-          <button key="delete" type="danger" onClick={handleDeleteEvent}>
+          <button key="delete" type="danger" onClick={handleDeleteEvent} className="bg-red-500 mr-2 p-1">
             Delete
           </button>,
-          <button key="update" onClick={handleUpdateEvent}>
+          <button key="update" onClick={handleUpdateEvent} className="bg-blue-500 mr-2 p-1" >
             Update
           </button>,
         ]}

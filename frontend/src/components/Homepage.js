@@ -1,9 +1,9 @@
 import "../assets/css/main.css";
 import "../assets/css/noscript.css";
 import screen from "../images/Logo/555.png"
-import pic1 from "../images/homepage/pic01.jpg"
-import pic2 from "../images/homepage/pic02.jpg"
-import pic3 from "../images/homepage/pic03.jpg"
+import pic1 from "../images/homepage/addevent.png"
+import pic2 from "../images/homepage/calender.png"
+import pic3 from "../images/homepage/search1.png"
 import Navbar from "./Navbar";
 const Homepage = () => {
   return <div>
@@ -18,7 +18,7 @@ const Homepage = () => {
 						<li><a href="#one" class="button icon solid fa-chevron-down scrolly">เรียนรู้เพิ่มเติม</a></li>
 					</ul>
 				</div>
-				<div ><div class="inner"><img src={screen} alt="" style={{ width: '600px', height: '600px', marginBottom:"10px" ,padding:"10px"}}/></div></div>
+				<div ><div class="inner"><img src={screen} alt="" style={{ width: '600px', height: '700px', marginBottom:"10px" ,padding:"10px"}}/></div></div>
 			</header>
             {/* <!-- one --> */}
             <section id="one" class="wrapper style2 special">
@@ -37,42 +37,31 @@ const Homepage = () => {
 			<section id="two" class="wrapper">
 				<div class="inner alt">
 					<section class="spotlight">
-						<div class="image"><img src={pic1} alt="" /></div>
+						<div class="image"><img src={pic1} alt="" style={{width:"300px", height: '300px'} }/></div>
 						<div class="content">
 							<h3>จัดการกับตารางงานให้กับทีมของคุณ</h3>
-							<p>Morbi mattis ornare ornare. Duis quam turpis, gravida at leo elementum elit fusce accumsan dui libero, quis vehicula lectus ultricies eu. In convallis amet leo non sapien iaculis efficitur consequat lorem ipsum.</p>
+							<p>คุณสามารถสร้าง เพิ่ม ลบ และแก้ไข อีเวนท์ของคุณในปฏิทินได้</p>
 						</div>
 					</section>
 					<section class="spotlight">
 						<div class="image"><img src={pic2} alt="" /></div>
 						<div class="content">
 							<h3>หน้าแดชบอร์ดปฏิทิน</h3>
-							<p>Morbi mattis ornare ornare. Duis quam turpis, gravida at leo elementum elit fusce accumsan dui libero, quis vehicula lectus ultricies eu. In convallis amet leo non sapien iaculis efficitur consequat lorem ipsum.</p>
+							<p>คุณสามาดูรายการอีเวนท์ต่าง ๆ ผ่านหน้าปฏิทิน </p>
 						</div>
 					</section>
-					<section class="spotlight">
-						<div class="image"><img src={pic3} alt="" /></div>
+					<section class="spotlight mb-8">
+						<div class="image"><img src={pic3} alt="" style={{width:"300px", height: '300px'} } /></div>
 						<div class="content">
 							<h3>ค้นหาอีเวนท์ต่าง ๆ </h3>
-							<p>Morbi mattis ornare ornare. Duis quam turpis, gravida at leo elementum elit fusce accumsan dui libero, quis vehicula lectus ultricies eu. In convallis amet leo non sapien iaculis efficitur consequat lorem ipsum.</p>
+							<p>สามารถค้นหาข้อมูลอีเวนท์ต่าง ๆ ในหน้าปฎิทิน อีกทั้งยังสามารถคำนวนราคารามได้อีกด้วย</p>
 						</div>
 					</section>
 					
 				</div>
 			</section>
 
-		{/* <!-- Three --> */}
-			<section id="three" class="wrapper style2 special">
-				<header class="major">
-					<h2>Magna leo sapien gravida</h2>
-					<p>Gravida at leo elementum elit fusce accumsan dui libero, quis vehicula<br />
-					lectus ultricies eu. In convallis amet leo sapien iaculis efficitur.</p>
-				</header>
-				<ul class="actions special">
-					<li><a href="#top" class="button primary icon solid fa-download">Download</a></li>
-					<li><a href="#top" class="button">Learn More</a></li>
-				</ul>
-			</section>
+		
 
   </div>;
 };

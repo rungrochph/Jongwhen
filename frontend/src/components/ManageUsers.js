@@ -101,17 +101,17 @@ const ManageUsers = () => {
          
           <button
             type="button"
-            className="bg-blue-500 inline-block rounded px-2 pb-0 pt-0  font-medium uppercase leading-normal text-primary hover:text-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:text-primary-700"
+            className="bg-blue-500 inline-block rounded px-2 pb-0 pt-0  font-medium uppercase leading-normal  hover:text-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:text-primary-700"
             onClick={(e) => handleEditButtonClick(e, row.id)}
           >
             Edit
           </button>
           <button
-            className="inline-block rounded bg-red-500 px-2 pb-0 pt-0  font-small uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#e4a11b] transition duration-150 ease-in-out hover:bg-warning-600 hover:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] focus:bg-warning-600 focus:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] focus:outline-none focus:ring-0 active:bg-warning-700 active:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(228,161,27,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.2),0_4px_18px_0_rgba(228,161,27,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.2),0_4px_18px_0_rgba(228,161,27,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.2),0_4px_18px_0_rgba(228,161,27,0.1)]"
+            className="inline-block rounded bg-red-500 px-2 pb-0 pt-0  font-small uppercase leading-normal text-white-500 shadow-[0_4px_9px_-4px_#e4a11b] transition duration-150 ease-in-out hover:bg-warning-600 hover:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] focus:bg-warning-600 focus:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] focus:outline-none focus:ring-0 active:bg-warning-700 active:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(228,161,27,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.2),0_4px_18px_0_rgba(228,161,27,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.2),0_4px_18px_0_rgba(228,161,27,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.2),0_4px_18px_0_rgba(228,161,27,0.1)]"
             type="button"
             onClick={(e) => handleDeleteButtonClick(e, row.id)}
           >
-            Delete
+           <p className="bg-white-500">Delete</p> 
           </button>
         </div>
       ),
@@ -292,8 +292,8 @@ async function updateUserByID(JasonData) {
         marginTop: "80px",
       }}
     >
-       
-      <div>
+       <div className="p-3 rounded-xl shadow-2xl">
+       <div>
         <h2 className="mb-4"> ManageUsers</h2>
       </div>
       <div>
@@ -305,9 +305,12 @@ async function updateUserByID(JasonData) {
            persistTableHead
           customStyles={customStyles}
           pagination
+          
         ></DataTable>
       </div>
     </div>
+       </div>
+      
     
     <Modal
         title="ยืนยันการลบบัญชีผู้ใช้งาน"

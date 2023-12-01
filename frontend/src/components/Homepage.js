@@ -1,6 +1,6 @@
 import "../assets/css/main.css";
 import "../assets/css/noscript.css";
-import screen from "../images/homepage/screen.jpg"
+import screen from "../images/Logo/555.png"
 import pic1 from "../images/homepage/pic01.jpg"
 import pic2 from "../images/homepage/pic02.jpg"
 import pic3 from "../images/homepage/pic03.jpg"
@@ -18,7 +18,7 @@ const Homepage = () => {
 						<li><a href="#one" class="button icon solid fa-chevron-down scrolly">เรียนรู้เพิ่มเติม</a></li>
 					</ul>
 				</div>
-				<div class="image phone"><div class="inner"><img src={screen} alt="" /></div></div>
+				<div ><div class="inner"><img src={screen} alt="" style={{ width: '600px', height: '600px', marginBottom:"10px" ,padding:"10px"}}/></div></div>
 			</header>
             {/* <!-- one --> */}
             <section id="one" class="wrapper style2 special">
@@ -26,11 +26,11 @@ const Homepage = () => {
 					<h2>มีฟีเจอร์ที่หลากหลาย<br />
 					ให้คุณเลือกใช้</h2>
 				</header>
-				<ul class="icons major">
+				{/* <ul class="icons major">
 					<li><span class="icon solid fa-camera-retro"><span class="label">Shoot</span></span></li>
 					<li><span class="icon solid fa-sync"><span class="label">Process</span></span></li>
 					<li><span class="icon solid fa-cloud"><span class="label">Upload</span></span></li>
-				</ul>
+				</ul> */}
 			</section>
 
 		{/* <!-- Two --> */}
@@ -53,7 +53,7 @@ const Homepage = () => {
 					<section class="spotlight">
 						<div class="image"><img src={pic3} alt="" /></div>
 						<div class="content">
-							<h3>แชทเพื่อแลกเปลี่ยนเวร</h3>
+							<h3>ค้นหาอีเวนท์ต่าง ๆ </h3>
 							<p>Morbi mattis ornare ornare. Duis quam turpis, gravida at leo elementum elit fusce accumsan dui libero, quis vehicula lectus ultricies eu. In convallis amet leo non sapien iaculis efficitur consequat lorem ipsum.</p>
 						</div>
 					</section>

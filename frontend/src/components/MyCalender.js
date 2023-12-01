@@ -11,7 +11,9 @@ import Searchbar from "./Searchbar";
 import Navbar from "./Navbar";
 import "../input.css";
 import Authen from "./Authen";
-
+// import 'bootstrap/dist/css/bootstrap.css';
+import '@fortawesome/fontawesome-free/css/all.css'; 
+// import bootstrapPlugin from '@fullcalendar/bootstrap';
 const Calendar = () => {
   const [userList, setUserList] = useState([]);
   useEffect(() => {
@@ -431,33 +433,37 @@ const Calendar = () => {
     <div className="flex flex-col ">
       <Authen/>
       <Navbar/>
-      <div>
+      <div >
         <Col span={24} style={{ justifyContent: "center" }} onClick={setData}>
           {" "}
           <Searchbar sentData={dataRecripts} sentStatus={getStatus} />
         </Col>
       </div>
 
-      <div className="grid grid-rows-4 grid-flow-col gap-8 mx-8 ml-8">
-
-        <div class="row-span-3 ml-8" id="external-event">
-          <ul>
+      <div className="grid grid-rows-1 grid-cols-7 gap-4 ml-4 pb-8">
+        <div class=" ml-16 row-span-1  col-span-2 shadow-2xl" id="external-event">
+          <div
+          className="  bg-white border border-white-200 rounded shadow-xl"
+          ><label>ประเภทของอีเวนท์ (ลากวางเพื่อเพิ่มอีเวนท์)</label></div>
+          
+          <ul className="rounded m-4">
             {typeEvent.map((item, index) => (
               <li
                 id={item.id}
                 title={item.name}
                 color={item.color}
                 price={item.price}
-                className="fc-event"
+                className="fc-event rounded hover:bg-gray-100 dark:bg-yellow-500 dark:border-gray-700 dark:hover:bg-gray-700 shadow-xl"
                 key={index}
                 style={{ backgroundColor: item.color }}
+                
               >
                 {item.name}
               </li>
             ))}
           </ul>
         </div>
-        <div class="row-span-4 col-span-2 mx-8 calender ">
+        <div className="ml-8 p-8 col-span-4 row-span-1 text-sm bg-white-800  not-italic bg-white-700 border-gray-600 placeholder-gray-400 white:text-dark rounded-xl shadow-2xl ">
           <FullCalendar
             plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
             headerToolbar={{
@@ -474,6 +480,8 @@ const Calendar = () => {
             eventResizableFromStart={true}
             eventResize={handleEventResize}
             eventClick={handleEventClick}
+            className="row-span-2 not-italic "  
+            
             
           />
         </div>

@@ -18,6 +18,7 @@
   color: #00aaff;
   flex-direction: column;
   text-decoration: none;
+  font-size: 50px;
 }
 /* Logo */
 .logo img {
@@ -35,7 +36,7 @@
   padding: 0;
   color: 		#9400d3;
   font-family: 'Cute Font', cursive; 
-  font-size: 20px;
+  font-size: 30px;
 }
 
 .menu-items li {

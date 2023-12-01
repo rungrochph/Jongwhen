@@ -266,11 +266,25 @@ app.get("/calender/getuser", jsonParser, function (req, res, next){
 app.post("/calender/getSumPrice", jsonParser, function (req, res, next){
   const userNameId = req.body.userNameId;
   const event_type_id = req.body.event_type_id;
-  const startDate = req.body.startDate
-  const endDate =  req.body.endDate
+  const startDate = req.body.startDate;
+  const endDate = req.body.endDate;
   
-  connection.query(
-    `
+  // Build the WHERE clause based on the provided parameters
+  let whereClause = " WHERE event_type_id = ?";
+  const queryParams = [event_type_id];
+  
+  if (userNameId) {
+    whereClause += " AND userNameId = ?";
+    queryParams.push(userNameId);
+  }
+  
+  if (startDate && endDate) {
+    whereClause += " AND jc.start BETWEEN ? AND ?";
+    queryParams.push(startDate, endDate);
+  }
+  
+  // Construct the final SQL query
+  const sql = `
     SELECT jc.id as id
     ,jc.title as title 
     ,jc.event_type_id as event_type_id
@@ -282,24 +296,22 @@ app.post("/calender/getSumPrice", jsonParser, function (req, res, next){
     ,jc.price as price
     ,je.color as color
     ,je.name as typeEventName
-    ,SUM(jc.price) as totalprice
     ,concat(ju.fname ," ",ju.lname) as fullname
+    ,SUM(jc.price) as totalprice
     FROM jw_calender as jc 
     LEFT JOIN jw_event_type as je ON jc.event_type_id = je.id
     LEFT JOIN jw_users as ju ON jc.userNameId = ju.id
-    WHERE event_type_id != ' ' 
-    AND userNameId =? 
-    AND event_type_id =?
-    AND jc.start BETWEEN ? AND ?
-     `,[userNameId,event_type_id,startDate,endDate],
-      function (err, results, fields) {
-        if (err) {
-          res.json({ status: "error", message: err });
-          return;
-        } 
-        res.json({ status: "ok", results: results });
-      }
-    ); 
+    ${whereClause}
+  `;
+  
+  // Execute the query with the constructed parameters
+  connection.query(sql, queryParams, function (err, results, fields) {
+    if (err) {
+      res.json({ status: "error", message: err });
+      return;
+    } 
+    res.json({ status: "ok", results: results });
+  });
 });
 
 // ดึงข้อมูลผู้ใช้งานผ่านการกรองจาก searchbar

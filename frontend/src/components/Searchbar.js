@@ -177,107 +177,110 @@ const Searchbar = (props) => {
   props.sentData(dataUser);
   props.sentStatus(status);
 
- function exportData() {
-  window.location.href = 'http://localhost:8080/jasperserver/rest_v2/reports/reports/jwReports/test.pdf?j_username=jasperadmin&j_password=jasperadmin&ID=51';
- ;
-  
-  }
-  
-  return (
-    <div className="flex flex-row ml-10 p-8 ">
-      <div className="menu-item">
-        <label className="block mb-2 text-sm font-medium text-gray-900 white:text-dark">
-          Start
-        </label>
-        <input
-          className="bg-white-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 white:text-dark dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          id="startDate"
-          type="date"
-          onChange={handleChangeStart}
-          ref={dateInputRefstart}
-          required
-        />
-        {/* <p>Selected Date: {startDate}</p> */}
-      </div>
-      <div className="menu-item">
-        <label className="block mb-2 text-sm font-medium text-gray-900 white:text-dark">
-          End
-        </label>
-        <input
-          className="bg-white-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 white:text-dark dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          id="endDate"
-          name="endDate"
-          type="date"
-          onChange={handleChangeEnd}
-          ref={dateInputRefend}
-          required
-        />
+  //  function exportData() {
+  //   window.location.href = 'http://localhost:8080/jasperserver/rest_v2/reports/reports/jwReports/test.pdf?j_username=jasperadmin&j_password=jasperadmin&ID=51';
+  //  ;
 
-        {/* <p>Selected Date: {endDate}</p> */}
-      </div>
-      <div className="menu-item">
-        <label className="block mb-2 text-sm font-medium text-gray-900 white:text-dark">
-          Type Of Event
-        </label>
-        <select
-          className="bg-white-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 white:text-dark dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          id="event_type_id"
-          name="event_type_id"
-          onChange={(e) => setEventTypeId(e.target.value)}
-          value={eventTypeId}
-          required
-        >
-          <option value={""} key={999}>
-            --กรุณาเลือกประเภท--
-          </option>
-          {typeEvent.map((item, index) => (
-            <option
-              key={index}
-              style={{ backgroundColor: item.color }}
-              value={item.id}
-            >
-              {item.name}
+  //   }
+
+  return (
+    <div className=" p-9 ml-6">
+      <div
+          className=" ml-8 text-base bg-white border border-white-200 rounded "
+          ><label>ค้นหา *(กรอกข้อมูลให้ครบทุกช่อง)</label></div>
+          
+      <div className="flex flex-row shadow-xl rounded-xl " >
+        <div className="menu-item" style={{ marginLeft: "10rem" }}>
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            เริ่มตั้งแต่
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="startDate"
+            type="date"
+            onChange={handleChangeStart}
+            ref={dateInputRefstart}
+            required
+          />
+          {/* <p>Selected Date: {startDate}</p> */}
+        </div>
+        <div className="menu-item">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            สิ้นสุด
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="endDate"
+            name="endDate"
+            type="date"
+            onChange={handleChangeEnd}
+            ref={dateInputRefend}
+            required
+          />
+
+          {/* <p>Selected Date: {endDate}</p> */}
+        </div>
+        <div className="menu-item ">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            ประเภทของอีเวนท์
+          </label>
+          <select
+            className="shadow appearance-none border rounded w-full py-5 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="event_type_id"
+            name="event_type_id"
+            onChange={(e) => setEventTypeId(e.target.value)}
+            value={eventTypeId}
+            required
+          >
+            <option value={""} key={999}>
+              --กรุณาเลือกประเภท--
             </option>
-          ))}
-        </select>
-      </div>
-      <div className="menu-item">
-        <label className="block mb-2 text-sm font-medium text-gray-900 white:text-dark">
-          Name
-        </label>
-        <select
-          className="bg-white-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 white:text-dark dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          id="userNameId"
-          value={userNameId}
-          onChange={(e) => setUserNameId(e.target.value)}
-          required
-        >
-          <option value={""} key={999}>
-            --กรุณาเลือกผู้รับผิดชอบ--
-          </option>
-          {userList.map((item, index) => (
-            <option key={index} value={item.id}>
-              {item.fullname} {item.position}
+            {typeEvent.map((item, index) => (
+              <option
+                key={index}
+                style={{ backgroundColor: item.color }}
+                value={item.id}
+              >
+                {item.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="menu-item ">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            ผู้รับผิดชอบ
+          </label>
+          <select
+            className="shadow appearance-none border rounded w-full py-5 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="userNameId"
+            value={userNameId}
+            onChange={(e) => setUserNameId(e.target.value)}
+            required
+          >
+            <option value={""} key={999}>
+              --กรุณาเลือกผู้รับผิดชอบ--
             </option>
-          ))}
-        </select>
-      </div>
-      <div>
-        <button class="btn btn-yellow btn-xs" onClick={getDatafromSearch}>
-          Search
-        </button>
-      </div>
-      <div>
-        <label
-          style={{ marginTop: "47px" }}
-          className="block mb-2 text-sm font-medium text-gray-900 white:text-dark"
-        >
-          {" "}
-          จำนวนทั้งหมด {totalPrice} บาท
-        </label>
-        <button class="btn btn-yellow btn-xs" onClick={exportData}>
-          export to pdf
-        </button>
+            {userList.map((item, index) => (
+              <option key={index} value={item.id}>
+                {item.fullname} {item.position}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <button
+            style={{ marginTop: "2.8rem", marginLeft: "2rem" }}
+            class=" p-1 px-3  bg-white border border-white-200 rounded shadow hover:bg-gray-100 dark:bg-yellow-500 dark:border-gray-700 dark:hover:bg-gray-700 shadow-xl text-sm"
+            onClick={getDatafromSearch}
+          >
+            ค้นหา
+          </button>
+        </div>
+        <div className="p-12 ml-12 ">
+          <p className="text-xl ml-8">จำนวนเงินทั้งสิ้นรวม {totalPrice} บาท</p>
+        </div>
+          
+        
       </div>
     </div>
   );
